@@ -10,7 +10,7 @@ With this app, I am trying to learn about web apps and how they work. I specific
 
 {Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running (starting the server and navigating through the web pages) and a walkthrough of the code.}
 
-[Software Demo Video](http://youtube.link.goes.here)
+[Calorie Calculator Demonstration Video](https://youtu.be/fh3KozgiHdE)
 
 # Web Pages
 
