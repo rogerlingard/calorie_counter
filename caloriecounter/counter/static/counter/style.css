@@ -1,0 +1,80 @@
+/* Used copilot to generate a quick template to save on time, and then edited it to make it look better and human readable. */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 5%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.food-form {
+  max-width: 50%; 
+  margin: 0 auto;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.form-label {
+  width: 100px;        /* fixed width for labels, which helps the lables line up and look nice */
+  font-weight: 600;
+  margin-right: 12px;
+}
+
+.form-field {
+  flex: 1;               /* input takes remaining space */
+}
+
+/* Make inputs full-width inside form-field */
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 8px;
+}
+
+/* Errors styling */
+.field-errors {
+  color: #b00020;
+  font-size: 0.9em;
+  margin-top: 4px;
+}
+
+/* Center and style the submit row */
+.form-actions {
+  margin-top: 0.75rem;
+}
+
+#show-total-btn {
+    margin-top: 20px;
+}

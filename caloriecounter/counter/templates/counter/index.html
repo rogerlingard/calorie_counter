@@ -1,0 +1,56 @@
+<!-- This is the main index.html template for the calorie counter app. We start by loading the static files -->
+<!-- This was written by copilot, mainly to help out and quicken the process of getting to learn Django better and to see the interaction of Django and HTML -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'counter/style.css' %}">
+</head>
+<body> 
+    <h1> Calorie Calculator </h1>
+
+    <h2>Every Entry Made</h2>
+    <!-- Here we have Django specific HTML injection here, where we display the list of foods. We use the if part to check if there are any foods in the list -->
+    {% if food_list %}
+        <!-- We are making a table that will display the food that we have inside of food_list. We start with the header rows, Food, Calories, etc.-->
+        <table>
+            <thead>
+                <tr>
+                    <th>Food</th>
+                    <th>Calories (per serving)</th>
+                    <th>Servings</th>
+                    <th>Total Calories</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- We loop through each food item in the food_list and display its details in the  table. With the syntax we have to tell where we want the for loop to loop through, which is why we have the end for part as well.-->
+                {% for food in food_list %}
+                <tr>
+                    <td>{{ food.food_name }}</td>
+                    <td>{{ food.calories }}</td>
+                    <td>{{ food.servings }}</td>
+                    <td>{{ food.total_calories }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <!-- If there are no foods in the food_list then we will display instead.-->
+    {% else %}
+        <p>No foods are available.</p>
+    {% endif %}
+
+    <a href="{% url 'counter:add_food' %}">
+        <button>Add Food</button>
+    </a>
+
+    <!-- Show total calories without reloading. The button we have goes to the total_calories view, and will use JSON to display the result afterwards -->
+    <div class="totals-row">
+        <button type="button" onclick="window.location.href='{% url 'counter:today' %}'"> See Today's Calories </button>
+      <button id="show-total-btn" type="button" data-url="{% url 'counter:total_calories' %}">Show Total Calories</button>
+      <div id="total-result" aria-live="polite"></div>
+    </div>
+    </div>
+    <hr>
+  <script src="{% static 'counter/js/adding_total_calories.js' %}"></script>
+</body>
+</html>

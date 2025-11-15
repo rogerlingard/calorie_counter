@@ -1,0 +1,42 @@
+  <!-- This file is where we direct the user when they hit the add food button. It allows the user to add foods to the database and it will show on the table on the index page.-->
+  <!-- This was written by copilot as well, to mainly to help out and quicken the process of getting to learn Django better and to see the interaction of Django and HTML -->
+  {% load static %}
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <link rel="stylesheet" href="{% static 'counter/style.css' %}">
+  </head>
+  <body>
+      <h1>Food Log</h1>
+      <div id="table-container">
+      <form method="post" class="food-form">
+        <!-- The csrf_token is a security feature in Django that prevents cross-site request forgery attacks, it is standard practice to include-->
+        {% csrf_token %}
+
+        <!-- Here we are creating a form with fields for food name, servings, and calories. Using Django syntax of {{ form.food_name.id_for_label }} to help with accessability as clicking on the form field will match with the input. -->
+        <div class="form-row">
+          <label class="form-label" for="{{ form.food_name.id_for_label }}">Food name:</label>
+          <!-- This is where we actually render the html. We use the errors to validate data and make sure that it is entered correctly. However most of the errors are caught by Django validation, and it is more of just in case something did go wrong.-->
+          <div class="form-field">{{ form.food_name }}{% if form.food_name.errors %}<div class="field-errors">{{ form.food_name.errors }}</div>{% endif %}</div>
+        </div>
+        <div class="form-row">
+          <label class="form-label" for="{{ form.servings.id_for_label }}">Servings:</label>
+          <div class="form-field">{{ form.servings }}{% if form.servings.errors %}<div class="field-errors">{{ form.servings.errors }}</div>{% endif %}</div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label" for="{{ form.calories.id_for_label }}">Calories:</label>
+          <div class="form-field">{{ form.calories }}{% if form.calories.errors %}<div class="field-errors">{{ form.calories.errors }}</div>{% endif %}</div>
+        </div>
+        <!-- This will submit the form to the database, triggering a POST request to create the food object -->
+        <div class="form-actions">
+          <button type="submit">Add Food</button>
+        </div>
+        <div class="form-actions">
+          <!-- This will bring us back to the index page of counter -->
+          <button type="button" onclick="window.location.href='{% url 'counter:index' %}'"> Back to Food List </button>
+        </div>
+      </form>
+  </body>
+  </html>

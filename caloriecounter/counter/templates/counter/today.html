@@ -1,0 +1,45 @@
+<!-- Very much like index.html, just shows today food that were entered.-->
+{% load static %}
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Today's Food</title>
+  <link rel="stylesheet" href="{% static 'counter/style.css' %}">
+</head>
+<body>
+  <h1>Today's Food</h1>
+
+  {% if foods %}
+    <table>
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Calories</th>
+          <th>Servings</th>
+          <th>Total Calories</th>
+          <th>Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for food in foods %}
+        <tr>
+          <td>{{ food.food_name }}</td>
+          <td>{{ food.calories }}</td>
+          <td>{{ food.servings }}</td>
+          <td>{{ food.total_calories }}</td>
+          <td>{{ food.created_at|date:"h:iA" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No foods logged today.</p>
+  {% endif %}
+
+  <p><strong>Overall total calories today:</strong> {{ total|floatformat:0 }}</p>
+
+   <button type="button" onclick="window.location.href='{% url 'counter:index' %}'"> Back to Food List </button>
+</body>
+</html>
