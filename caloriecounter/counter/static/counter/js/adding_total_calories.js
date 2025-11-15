@@ -1,5 +1,5 @@
  //Had the help of copilot with this code to write a javascript function to get the total amount of calories from the backend and display it on the page when the button is clicked.
- //The JavaScript code here is an IIFE, which means we are wrapping the code in a private function, which we will run immdeately, and avoid any global variables. This prevents JS naming conflicts.
+ //The JavaScript code here is an IIFE, which means we are wrapping the code in a private function, which will run as soon as it is defined. This prevents JS naming conflicts.
  (() => {
     // Get the button by its ID
     const btn = document.getElementById('show-total-btn');
@@ -14,7 +14,7 @@
             console.error('No URL found for total_calories');
             return;
         }
-        //This gets the data from the backend using the fetch API, which is a way to get HTTP requests in JavaScript. We go to /counter/total_calories/ to go to the view and it will return the total calories in JSON format.
+        //fetch() returns a Promise, which is why we use .then() and .catch(). It gets the data from the backend using the fetch API, which is a way to get HTTP requests in JavaScript. We go to /counter/total_calories/ to go to the view and it will return the total calories in JSON format.
         fetch(url)
             //This processes the response from the fetch call, checking if it was successful and parsing it as JSON.
             .then(response => {
